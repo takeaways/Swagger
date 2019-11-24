@@ -77,3 +77,182 @@ paths:
 1. github 해당 경로 https://github.com/swagger-api/swagger-ui 에서 dist 파일을 node project의 public 폴더에 널어 준다
 2. 해당 dist 폴더 안에 index.html 내부의 url 주소를 api를 요청하는 yaml 파일이 있는 경로를 적어준다.
 3. yaml 파일만 잘 변경 해주면 바로 사용이 쉽다!!
+<pre>
+<code>
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "My API"
+  description: "MYMY"
+servers:
+  - description: MyAPI
+    url: http://localhost:8080/
+  - description: use json plceholder api
+    url: https://jsonplaceholder.typicode.com
+  - description: Google API
+    url: https://www.google.com
+tags:
+  - name: chatbot
+    description: Everything about chatbot
+    externalDocs:
+      description: 여기서 찾아보세요!
+      url: "http://www.naver.com"
+paths:
+  /adder:
+    get:
+      summary: Adder API
+      parameters:
+        - name: one
+          in: query
+          description: First Value
+          required: true
+          schema:
+            type: integer
+        - name: two
+          in: query
+          description: Second Value
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Added Result
+          schema:
+            type: integer
+    post:
+      summary: Adder API
+      parameters:
+        - name: one
+          in: query
+          description: First Value
+          required: true
+          schema:
+            type: integer
+        - name: two
+          in: query
+          description: Second Value
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Added Result
+          schema:
+            type: integer
+  /todos/{id}:
+    get:
+      summary: Return a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The Id of the user to return
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: integer
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  completed:
+                    type: boolean
+  /todos/:
+    get:
+      tags:
+        - chatbot
+      summary: 자동완성 검색 결과를 반환합니다.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+        - name: client
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A Text File
+          content:
+            text/plain:
+              schema:
+                type: string
+    post:
+      tags:
+        - chatbot
+      summary: 자동완성 검색 결과를 반환합니다.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+        - name: client
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A Text File
+          content:
+            text/plain:
+              schema:
+                type: string
+    put:
+      tags:
+        - chatbot
+      summary: 자동완성 검색 결과를 반환합니다.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+        - name: client
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A Text File
+          content:
+            text/plain:
+              schema:
+                type: string
+  /complete/search:
+    get:
+      summary: 자동완성 검색 결과를 반환합니다.
+      description: >-
+        Muliple tags can be provided with comma separated strings. Use\ \ tag1,
+        tag2, tag3 for testing.
+      operationId: findPetsByTags
+      parameters:
+        - name: tags
+          in: query
+          description: Tags to filter by
+          required: true
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+        "400":
+          description: Invalid tag value
+      deprecated: true
+
+</code>
+</pre>
