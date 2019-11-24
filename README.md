@@ -71,3 +71,9 @@ paths:
           
 </code>
 </pre>
+
+### NodeJS 를 이용한 설치형 Swagger를 종속시켜서 사용해보기
+
+1. github 해당 경로 https://github.com/swagger-api/swagger-ui 에서 dist 파일을 node project의 public 폴더에 널어 준다
+2. 해당 dist 폴더 안에 index.html 내부의 url 주소를 api를 요청하는 yaml 파일이 있는 경로를 적어준다.
+3. yaml 파일만 잘 변경 해주면 바로 사용이 쉽다!!
