@@ -86,35 +86,35 @@ info:
   description: "MYMY"
 servers:
   - description: MyAPI
-    url: http://localhost:8080/
+    url: http://localhost:8080/                       API를 요청할 주소를 입니다.
   - description: use json plceholder api
     url: https://jsonplaceholder.typicode.com
   - description: Google API
     url: https://www.google.com
 tags:
-  - name: chatbot
+  - name: chatbot                                     묶음을 만들어 주기위해 태그만들기
     description: Everything about chatbot
     externalDocs:
       description: 여기서 찾아보세요!
       url: "http://www.naver.com"
 paths:
-  /adder:
+  /adder:                                             해당경로에 method 마다 명시 
     get:
       summary: Adder API
       parameters:
         - name: one
-          in: query
+          in: query                                   쿼리로 보낼 데이터라고 명시
           description: First Value
-          required: true
+          required: true                              require 확인                            
           schema:
-            type: integer
+            type: integer                             전달 데이터의 형식 작성
         - name: two
           in: query
           description: Second Value
           required: true
           schema:
             type: integer
-      responses:
+      responses:                                     해당 요처에 응답값 정보
         "200":
           description: Added Result
           schema:
@@ -144,7 +144,7 @@ paths:
       summary: Return a user by ID
       parameters:
         - name: id
-          in: path
+          in: path                                 path 경로에 추가 해할 경우 path로 작성
           required: true
           description: The Id of the user to return
           schema:
@@ -252,7 +252,7 @@ paths:
                 type: array
         "400":
           description: Invalid tag value
-      deprecated: true
+      deprecated: true                               사용경고
 
 </code>
 </pre>
